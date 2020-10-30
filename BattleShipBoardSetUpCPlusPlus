@@ -1,0 +1,232 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <time.h>
+
+
+//stuff{rows left and right}[colums up and down]
+
+int main()
+{
+    srand((unsigned int)time(NULL));
+
+    int PO[10][10] = { {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, };
+
+    int PT[10][10] = { {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, };
+
+    bool OneReady = false;
+
+    bool TwoReady = false;
+
+    int Randy = 0; //going to be y input
+
+    int Randic = 0; //going to be x input
+
+    while (OneReady == false)
+    {
+
+        Randy = rand() % 10;
+
+        Randic = rand() % 6;
+
+        PO[Randic][Randy] = 1;
+        PO[Randic + 1][Randy] = 1;
+        PO[Randic + 2][Randy] = 1;
+        PO[Randic + 3][Randy] = 1;
+        PO[Randic + 4][Randy] = 1;
+
+        while (OneReady == false)
+        {
+            Randy = rand() % 7;
+
+            Randic = rand() % 10;
+
+            if (PO[Randic][Randy] == 0 && PO[Randic][Randy + 1] == 0 && PO[Randic][Randy + 2] == 0 && PO[Randic][Randy + 3] == 0)
+            {
+                PO[Randic][Randy] = 2;
+                PO[Randic][Randy + 1] = 2;
+                PO[Randic][Randy + 2] = 2;
+                PO[Randic][Randy + 3] = 2;
+                OneReady = true;
+            }
+        }
+        OneReady = false;
+
+        while (OneReady == false)
+        {
+            Randy = rand() % 10;
+
+            Randic = rand() % 8;
+
+            if (PO[Randic][Randy] == 0 && PO[Randic + 1][Randy] == 0 && PO[Randic + 2][Randy] == 0)
+            {
+                PO[Randic][Randy] = 3;
+                PO[Randic + 1][Randy] = 3;
+                PO[Randic + 2][Randy] = 3;
+                OneReady = true;
+            }
+        }
+        OneReady = false;
+
+        while (OneReady == false)
+        {
+            Randy = rand() % 8;
+
+            Randic = rand() % 10;
+
+            if (PO[Randic][Randy] == 0 && PO[Randic][Randy + 1] == 0 && PO[Randic][Randy + 2] == 0)
+            {
+                PO[Randic][Randy] = 4;
+                PO[Randic][Randy + 1] = 4;
+                PO[Randic][Randy + 2] = 4;
+                OneReady = true;
+            }
+        }
+        OneReady = false;
+
+        while (OneReady == false)
+        {
+            Randy = rand() % 10;
+
+            Randic = rand() % 9;
+
+            if (PO[Randic][Randy] == 0 && PO[Randic + 1][Randy] == 0)
+            {
+                PO[Randic][Randy] = 5;
+                PO[Randic + 1][Randy] = 5;
+                OneReady = true;
+            }
+        }
+
+    }
+
+
+    while (TwoReady == false)
+    {
+
+        Randy = rand() % 6;
+
+        Randic = rand() % 10;
+
+        PT[Randic][Randy] = 1;
+        PT[Randic][Randy + 1] = 1;
+        PT[Randic][Randy + 2] = 1;
+        PT[Randic][Randy + 3] = 1;
+        PT[Randic][Randy + 4] = 1;
+
+        while (TwoReady == false)
+        {
+            Randy = rand() % 10;
+
+            Randic = rand() % 7;
+
+            if (PT[Randic][Randy] == 0 && PT[Randic + 1][Randy] == 0 && PT[Randic + 2][Randy] == 0 && PT[Randic + 3][Randy] == 0)
+            {
+                PT[Randic][Randy] = 2;
+                PT[Randic + 1][Randy] = 2;
+                PT[Randic + 2][Randy] = 2;
+                PT[Randic + 3][Randy] = 2;
+                TwoReady = true;
+            }
+        }
+        TwoReady = false;
+
+        while (TwoReady == false)
+        {
+            Randy = rand() % 10;
+
+            Randic = rand() % 8;
+
+            if (PT[Randic][Randy] == 0 && PT[Randic + 1][Randy] == 0 && PT[Randic + 2][Randy] == 0)
+            {
+                PT[Randic][Randy] = 3;
+                PT[Randic + 1][Randy] = 3;
+                PT[Randic + 2][Randy] = 3;
+                TwoReady = true;
+            }
+        }
+        TwoReady = false;
+
+        while (TwoReady == false)
+        {
+            Randy = rand() % 8;
+
+            Randic = rand() % 10;
+
+            if (PT[Randic][Randy] == 0 && PT[Randic][Randy + 1] == 0 && PT[Randic][Randy + 2] == 0)
+            {
+                PT[Randic][Randy] = 4;
+                PT[Randic][Randy + 1] = 4;
+                PT[Randic][Randy + 2] = 4;
+                TwoReady = true;
+            }
+        }
+        TwoReady = false;
+
+        while (TwoReady == false)
+        {
+            Randy = rand() % 9;
+
+            Randic = rand() % 10;
+
+            if (PT[Randic][Randy] == 0 && PT[Randic][Randy + 1] == 0)
+            {
+                PT[Randic][Randy] = 5;
+                PT[Randic][Randy + 1] = 5;
+                TwoReady = true;
+            }
+        }
+
+    }
+
+    for (int i = 0; i < 10; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            if (PO[j][i] == 0)
+            {
+                std::cout << "0";
+            }
+            else if (PO[j][i] == 6)
+            {
+                std::cout << "O";
+            }
+            else if (PO[j][i] == 7)
+            {
+                std::cout << "X";
+            }
+            else if (PO[j][i] <= 5)
+            {
+                std::cout << PO[j][i];
+            }
+            std::cout << "   ";
+        }
+
+        std::cout << "    ";
+
+        for (int k = 0; k < 10; k++)
+        {
+            if (PT[k][i] == 0)
+            {
+                std::cout << "0";
+            }
+            else if (PT[k][i] == 6)
+            {
+                std::cout << "O";
+            }
+            else if (PT[k][i] == 7)
+            {
+                std::cout << "X";
+            }
+            else if (PT[k][i] <= 5)
+            {
+                std::cout << PT[k][i];
+            }
+            std::cout << "   ";
+        }
+
+        std::cout << "\n" << std::endl;
+    }
+
+
+}
