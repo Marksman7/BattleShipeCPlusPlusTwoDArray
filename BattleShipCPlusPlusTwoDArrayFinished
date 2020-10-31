@@ -1,0 +1,407 @@
+
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <time.h>
+
+
+//stuff{rows left and right}[colums up and down]
+
+int main()
+{
+    srand((unsigned int)time(NULL));
+
+    std::string Letter[10] = {"a", "b",  "c",  "d", "e",  "f",  "g",  "h",  "i",  "j"};
+
+    std::string Letters[10] = { "A", "B",  "C",  "D", "E",  "F",  "G",  "H",  "I",  "J" };
+
+    std::string Number[10] = { "1", "2",  "3",  "4", "5",  "6",  "7",  "8",  "9",  "10" };
+
+    //player 1 view on attacking player 2
+    int PO[10][10] = { {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, };
+    // player 2 view on attacking player 1
+    int PT[10][10] = { {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, {0,0,0,0,0,0,0,0,0,0}, };
+
+    bool OneReady = false;
+
+    bool TwoReady = false;
+
+    std::string OneInputLetter = "";
+
+    std::string OneInputNumber = "";
+
+    std::string TwoInputLetter = "";
+
+    std::string TwoInputNumber = "";
+
+    int Xhandlerone = 0;
+
+    int Yhandlerone = 0;
+
+    int Xhandlertwo = 0;
+
+    int Yhandlertwo = 0;
+
+    int Randy = 0; //going to be y input
+
+    int Randic = 0; //going to be x input
+
+    int OneScore[5] = { 5, 4, 3, 3, 2};
+
+    int TwoScore[5] = { 5, 4, 3, 3, 2 };
+
+    bool OneWin = false;
+
+    bool TwoWin = false;
+
+    while (OneReady == false)
+    {
+
+        Randy = rand() % 10;
+
+        Randic = rand() % 6;
+
+        PO[Randic][Randy] = 1;
+        PO[Randic + 1][Randy] = 1;
+        PO[Randic + 2][Randy] = 1;
+        PO[Randic + 3][Randy] = 1;
+        PO[Randic + 4][Randy] = 1;
+
+        while (OneReady == false)
+        {
+            Randy = rand() % 7;
+
+            Randic = rand() % 10;
+
+            if (PO[Randic][Randy] == 0 && PO[Randic][Randy + 1] == 0 && PO[Randic][Randy + 2] == 0 && PO[Randic][Randy + 3] == 0)
+            {
+                PO[Randic][Randy] = 2;
+                PO[Randic][Randy + 1] = 2;
+                PO[Randic][Randy + 2] = 2;
+                PO[Randic][Randy + 3] = 2;
+                OneReady = true;
+            }
+        }
+        OneReady = false;
+
+        while (OneReady == false)
+        {
+            Randy = rand() % 10;
+
+            Randic = rand() % 8;
+
+            if (PO[Randic][Randy] == 0 && PO[Randic + 1][Randy] == 0 && PO[Randic + 2][Randy] == 0)
+            {
+                PO[Randic][Randy] = 3;
+                PO[Randic + 1][Randy] = 3;
+                PO[Randic + 2][Randy] = 3;
+                OneReady = true;
+            }
+        }
+        OneReady = false;
+
+        while (OneReady == false)
+        {
+            Randy = rand() % 8;
+
+            Randic = rand() % 10;
+
+            if (PO[Randic][Randy] == 0 && PO[Randic][Randy + 1] == 0 && PO[Randic][Randy + 2] == 0)
+            {
+                PO[Randic][Randy] = 4;
+                PO[Randic][Randy + 1] = 4;
+                PO[Randic][Randy + 2] = 4;
+                OneReady = true;
+            }
+        }
+        OneReady = false;
+
+        while (OneReady == false)
+        {
+            Randy = rand() % 10;
+
+            Randic = rand() % 9;
+
+            if (PO[Randic][Randy] == 0 && PO[Randic + 1][Randy] == 0)
+            {
+                PO[Randic][Randy] = 5;
+                PO[Randic + 1][Randy] = 5;
+                OneReady = true;
+            }
+        }
+
+    }
+
+
+    while (TwoReady == false)
+    {
+
+        Randy = rand() % 6;
+
+        Randic = rand() % 10;
+
+        PT[Randic][Randy] = 1;
+        PT[Randic][Randy + 1] = 1;
+        PT[Randic][Randy + 2] = 1;
+        PT[Randic][Randy + 3] = 1;
+        PT[Randic][Randy + 4] = 1;
+
+        while (TwoReady == false)
+        {
+            Randy = rand() % 10;
+
+            Randic = rand() % 7;
+
+            if (PT[Randic][Randy] == 0 && PT[Randic + 1][Randy] == 0 && PT[Randic + 2][Randy] == 0 && PT[Randic + 3][Randy] == 0)
+            {
+                PT[Randic][Randy] = 2;
+                PT[Randic + 1][Randy] = 2;
+                PT[Randic + 2][Randy] = 2;
+                PT[Randic + 3][Randy] = 2;
+                TwoReady = true;
+            }
+        }
+        TwoReady = false;
+
+        while (TwoReady == false)
+        {
+            Randy = rand() % 10;
+
+            Randic = rand() % 8;
+
+            if (PT[Randic][Randy] == 0 && PT[Randic + 1][Randy] == 0 && PT[Randic + 2][Randy] == 0)
+            {
+                PT[Randic][Randy] = 3;
+                PT[Randic + 1][Randy] = 3;
+                PT[Randic + 2][Randy] = 3;
+                TwoReady = true;
+            }
+        }
+        TwoReady = false;
+
+        while (TwoReady == false)
+        {
+            Randy = rand() % 8;
+
+            Randic = rand() % 10;
+
+            if (PT[Randic][Randy] == 0 && PT[Randic][Randy + 1] == 0 && PT[Randic][Randy + 2] == 0)
+            {
+                PT[Randic][Randy] = 4;
+                PT[Randic][Randy + 1] = 4;
+                PT[Randic][Randy + 2] = 4;
+                TwoReady = true;
+            }
+        }
+        TwoReady = false;
+
+        while (TwoReady == false)
+        {
+            Randy = rand() % 9;
+
+            Randic = rand() % 10;
+
+            if (PT[Randic][Randy] == 0 && PT[Randic][Randy + 1] == 0)
+            {
+                PT[Randic][Randy] = 5;
+                PT[Randic][Randy + 1] = 5;
+                TwoReady = true;
+            }
+        }
+
+    }
+
+    while(OneWin == false && TwoWin == false)
+    {
+
+    
+
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                if (PO[j][i] <= 5)
+                {
+                    std::cout << "0";
+                }
+                else if (PO[j][i] == 6)
+                {
+                    std::cout << "O";
+                }
+                else if (PO[j][i] == 7)
+                {
+                    std::cout << "X";
+                }
+                std::cout << "   ";
+            }
+
+            std::cout << "  " + Letters[i] + "      ";
+
+            for (int k = 0; k < 10; k++)
+            {
+                if (PT[k][i] <= 5)
+                {
+                    std::cout << "0";
+                }
+                else if (PT[k][i] == 6)
+                {
+                    std::cout << "O";
+                }
+                else if (PT[k][i] == 7)
+                {
+                    std::cout << "X";
+                }
+                std::cout << "   ";
+            }
+
+            std::cout << "\n" << std::endl;
+        }
+
+        std::cout << "1   2   3   4   5   6   7   8   9   10           1   2   3   4   5   6   7   8   9   10\n" << std::endl;
+
+        std::cout << "            Player One side                                 Player Two side\n" << std::endl;
+
+        std::cout << "Player One Place in the row letter of target\n" << std::endl;
+
+        std::cin >> OneInputLetter;
+
+        std::cout << "Player One Place in the colum number of target\n" << std::endl;
+
+        std::cin >> OneInputNumber;
+
+        std::cout << "Player Two Place in the row letter of target\n" << std::endl;
+
+        std::cin >> TwoInputLetter;
+
+        std::cout << "Player Two Place in the colum number of target\n" << std::endl;
+
+        std::cin >> TwoInputNumber;
+
+        system("CLS");
+
+        Xhandlerone = 10;
+
+        Yhandlerone = 10;
+
+        Xhandlertwo = 10;
+
+        Yhandlertwo = 10;
+
+        for (int u = 0; u < 10; u++)
+        {
+            if (Letter[u] == OneInputLetter || Letters[u] == OneInputLetter)
+            {
+                Yhandlerone = u;
+            }
+
+            if (Number[u] == OneInputNumber)
+            {
+                Xhandlerone = u;
+            }
+
+            if (Letter[u] == TwoInputLetter || Letters[u] == TwoInputLetter)
+            {
+                Yhandlertwo = u;
+            }
+
+            if (Number[u] == TwoInputNumber)
+            {
+                Xhandlertwo = u;
+            }
+        }
+
+        if (Xhandlerone != 10 && Yhandlerone != 10)
+        {
+            if (PO[Xhandlerone][Yhandlerone] == 0)
+            {
+                PO[Xhandlerone][Yhandlerone] = 6;
+
+                std::cout << "Player One miss\n" << std::endl;
+            }
+            else if (PO[Xhandlerone][Yhandlerone] <= 5)
+            {
+
+                std::cout << "Player One Hit\n" << std::endl;
+
+                for (int q = 1; q < 6; q++)
+                {
+                    if (PO[Xhandlerone][Yhandlerone] == q)
+                    {
+                        OneScore[q - 1] = OneScore[q - 1] - 1;
+
+                        if (OneScore[q - 1] == 0)
+                        {
+                            std::cout << "Player one, you just sunk one of player twos ships\n" << std::endl;
+                        }
+                    }
+                }
+
+                PO[Xhandlerone][Yhandlerone] = 7;
+
+            }
+            else
+            {
+                std::cout << "Player One, you have just wasted you move by hitting that spot again\n" << std::endl;
+            }
+        }
+        else
+        {
+            std::cout << "Player One decided to not fire\n" << std::endl;
+        }
+
+        if (Xhandlertwo != 10 && Yhandlertwo != 10)
+        {
+            if (PT[Xhandlertwo][Yhandlertwo] == 0)
+            {
+                PT[Xhandlertwo][Yhandlertwo] = 6;
+
+                std::cout << "Player Two miss\n" << std::endl;
+            }
+            else if (PT[Xhandlertwo][Yhandlertwo] <= 5)
+            {
+
+                std::cout << "Player Two Hit\n" << std::endl;
+
+                for (int q = 1; q < 6; q++)
+                {
+                    if (PT[Xhandlertwo][Yhandlertwo] == q)
+                    {
+                        TwoScore[q - 1] = TwoScore[q - 1] - 1;
+
+                        if (TwoScore[q - 1] == 0)
+                        {
+                            std::cout << "Player Two, you just sunk one of player ones ships\n" << std::endl;
+                        }
+                    }
+                }
+
+                PT[Xhandlertwo][Yhandlertwo] = 7;
+
+            }
+            else
+            {
+                std::cout << "Player Two, you have just wasted you move by hitting that spot again\n" << std::endl;
+            }
+        }
+        else
+        {
+            std::cout << "Player Two decided to not fire\n" << std::endl;
+        }
+
+
+            if (OneScore[0] == 0 && OneScore[1] == 0 && OneScore[2] == 0 && OneScore[3] == 0 && OneScore[4] == 0)
+            {
+                OneWin = true;
+
+                std::cout << "Player One is victorious\n" << std::endl;
+            }
+
+            if (TwoScore[0] == 0 && TwoScore[1] == 0 && TwoScore[2] == 0 && TwoScore[3] == 0 && TwoScore[4] == 0)
+            {
+                TwoWin = true;
+
+                std::cout << "Player Two has sunken their opponet's fleet\n" << std::endl;
+            }
+    }
+
+}
